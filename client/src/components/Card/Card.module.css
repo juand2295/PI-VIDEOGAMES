@@ -1,0 +1,31 @@
+.card {
+    background-color:rgb(95, 96, 95);
+    border-radius: 7px;
+    width: 350px;
+    height: 150px;
+    box-shadow: 2px 2px 8px black;
+    margin-top: 15px;
+    cursor: pointer;
+    &:hover {
+        box-shadow: 2px 2px 8px white;  
+      }
+}
+
+.card h2 {
+    color: white;
+    display: block;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.card img {
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+    float: left;
+    height: 150px;
+    max-width: 200px;
+    image-rendering: optimizeSpeed;
+    
+    /* margin-top: 2px;
+    border-radius: 10px; */
+}
