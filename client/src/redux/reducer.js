@@ -3,7 +3,7 @@ import {FILTER_BY_GENRE, FILTER_BY_SOURCE, GET_VIDEOGAMES, GET_VIDEOGAMES_BY_ID,
 const initialState = {
     videogames: [],
     videogamesCopy: [],
-    pagination:[]
+    byId:[]
 }
 const reducer = (state = initialState, action) => {
     switch(action.type){
@@ -12,7 +12,7 @@ const reducer = (state = initialState, action) => {
         case GET_VIDEOGAMES_BY_NAME:
             return {...state, videogames: action.payload, videogamesCopy: action.payload}
         case GET_VIDEOGAMES_BY_ID:
-            return {...state, videogames:action.payload, videogamesCopy: action.payload}
+            return {...state, byId: action.payload}
         case FILTER_BY_SOURCE:
             const filteredBySource = state.videogamesCopy.filter(vid => isNaN(vid.id) === isNaN(action.payload))
             return {...state, videogames: filteredBySource}

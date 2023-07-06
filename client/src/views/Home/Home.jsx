@@ -10,10 +10,10 @@ import style from './Home.module.css'
 const Home = () => {
     
     //// PGAINADO ////
-    const ITEMS_PER_PAGE = 5
+    const ITEMS_PER_PAGE = 15
     const [currentPage, setCurrentPage] = useState(1)
     const [index, setIndex] = useState(0)
-    const videogames = useSelector(state=> [...state.videogames].splice(index,5))// Me suscribo al estado global, hay q recordar que el estado global es un obj q solo puede ser modificado por el reducer(fn) a traves de las actions
+    const videogames = useSelector(state=> [...state.videogames].splice(index,15))// Me suscribo al estado global, hay q recordar que el estado global es un obj q solo puede ser modificado por el reducer(fn) a traves de las actions
     //////////////////
 
     const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const Home = () => {
     
 
     const prevHandler = () => {
-        setIndex(((currentPage-1)*ITEMS_PER_PAGE)-5)
+        setIndex(((currentPage-1)*ITEMS_PER_PAGE)-15)
         const prevPage = currentPage - 1
         setCurrentPage(prevPage)
     }
@@ -74,10 +74,15 @@ const Home = () => {
 
     const[aux, setAux] = useState(false)
 
+    const handleReset = () => {
+        dispatch(getVideogames())
+        setSearchstring('')
+    }
+
     return (
         <>  
-            <div>
-                <SearchBar handleChange={handleChange} handleSubmit={handleSubmit} searchString={searchString}/>
+            <div className={style.searchBar}>
+                <SearchBar handleChange={handleChange} handleSubmit={handleSubmit} searchString={searchString} handleReset={handleReset}/>
             </div>
             <select name="source" defaultValue={'DEFAULT'} onChange={handleSourceFilter}>
                 <option value="DEFAULT" disabled>-Filter Source-</option>

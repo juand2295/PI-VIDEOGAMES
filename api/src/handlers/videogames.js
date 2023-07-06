@@ -29,12 +29,12 @@ const getVideogamesById = async (req, res) => {
 
 const postVideogame = async (req, res) => {
     const { name, description, platforms, image, release_date, rating, genres} = req.body
+    console.log(req.body)
     try {
         const newVideogame = await createVideogame(name, description, platforms, image, release_date, rating, genres)
-        res.status(201).json(newVideogame)
-        // return res.status(404).send('Not found')  
+        res.status(201).json(newVideogame)  
     } catch (error) {
-        res.status(404).send(error.message)
+        res.status(404).send({error: error.message})
      }
 }
 

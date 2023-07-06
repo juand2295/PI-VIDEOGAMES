@@ -6,16 +6,22 @@
     box-shadow: 2px 2px 8px black;
     margin-top: 15px;
     cursor: pointer;
+    text-decoration: none;
     &:hover {
         box-shadow: 2px 2px 8px white;  
       }
+
 }
 
 .card h2 {
     color: white;
     display: block;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    outline: none;
 }
 
 .card img {
@@ -25,6 +31,7 @@
     height: 150px;
     max-width: 200px;
     image-rendering: optimizeSpeed;
+    text-decoration: none;
     
     /* margin-top: 2px;
     border-radius: 10px; */

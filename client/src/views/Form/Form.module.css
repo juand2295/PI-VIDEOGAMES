@@ -1,0 +1,68 @@
+.container{
+    color: white;
+    padding: 10px;   
+}
+
+.container h1 {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    text-decoration-line: none;
+}
+
+.container input{
+    width: 33%;
+    padding: 2px;
+    margin: 8px;
+    box-sizing: border-box;
+    
+}
+
+.container label{
+    position: absolute;
+    left:20%;
+    padding: 2px;
+    margin: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+   
+}
+
+.container span{
+    color: red;
+    position: absolute;
+    left: 70%;
+    padding: 2px;
+    margin: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    
+}
+
+.container button{
+    margin: 20px;
+    background-color: rgb(24, 24, 24);
+    position: relative;
+    padding: 10px 20px;
+    font-size: 0.8rem;
+    color: red;
+    border: 1px solid black;
+    border-radius: 4px;
+    text-shadow: 0 0 15px red;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    transition: 0.5s;
+    z-index: 1;
+}
+
+.container button:hover {
+    color: #fff;
+    border: 1px solid rgba(237, 13, 13, 0);
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.521);
+    cursor: pointer;
+}

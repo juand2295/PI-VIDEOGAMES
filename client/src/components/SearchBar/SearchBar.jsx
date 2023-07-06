@@ -14,7 +14,8 @@ const SearchBar = (props) => {
              onChange={props.handleChange}
             //  onChange={handleChange}
              /> 
-         <button onClick={() => props.handleSubmit()}>Search</button>
+         <button onClick={() => props.handleSubmit()}><span>Search</span></button>
+         <button onClick={() => props.handleReset()}><span>RESET</span></button>
       </div>
    ); 
 }

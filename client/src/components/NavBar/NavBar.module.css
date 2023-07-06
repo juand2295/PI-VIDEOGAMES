@@ -1,9 +1,32 @@
 .mainContainer{
+    
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content:center;
     background-color: dimgrey;
     height: 4rem;
 
+}
+
+.home{
+    font-size: 1.1rem;
+    text-decoration: none;
+    padding-right: 70px;
+    color: white;
+    font-weight: bolder;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    text-decoration-line: none;
+}
+
+.forms{
+    font-size: 1.1rem;
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
 }

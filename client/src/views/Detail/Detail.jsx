@@ -14,7 +14,7 @@ const Detail = () => {
         dispatch(getVideogameById(id))
     },[dispatch])
 
-    const videogame = useSelector(state=> state.videogames)
+    const videogame = useSelector(state=> state.byId)
     console.log(videogame)
     console.log('holis')
 
@@ -24,15 +24,16 @@ const Detail = () => {
             <img src={videogame.image} alt='imagen' />
             </div>
             <h4>id: {videogame.id}</h4>
-            <h1>{videogame.name}</h1>
-            <h4 className={style.h4date}>Released: {videogame.release_date}</h4>
-            <h2>Platform/s</h2>
-            <h3>{videogame.platforms}</h3>
-            <h2>Genre/s</h2>
-            <h3>{videogame.genres}</h3>
-            <h2>Description:</h2>
-            <h3>{videogame.description}</h3>
-            <h1>{videogame.rating}</h1>
+            <h2>{videogame.name}</h2>
+            <p>Released: {videogame.release_date}</p>
+            <h3>Platform/s</h3>
+            <p>{videogame.platforms}</p>
+            <h3>Genre/s</h3>
+            <p>{videogame.genres}</p>
+            <h3>Description:</h3>
+            <p>{videogame.description}</p>
+            <h3>Rating:</h3>
+            <p>{videogame.rating}</p>
         </div>
     );
 }
