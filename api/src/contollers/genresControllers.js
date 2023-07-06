@@ -20,5 +20,10 @@ const getAllGenres = async() => {
     return dbbGenres
 }
 
+const createGenre = async(name) => {
+    const genre = await Genres.create({name})
+    return genre
+}
 
-module.exports={getAllGenres}
+
+module.exports={getAllGenres, createGenre}

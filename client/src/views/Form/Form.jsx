@@ -26,29 +26,35 @@ const Form = () => {
         genres:''
     })
 
+    console.log(errors.name.length)
+
+
+    const validate = (obj)=> {
+        const errors = {}
+        
+        obj.name.length===1 ? errors.name = 'Must have at least 2 characters' : errors.name = ''
+        obj.image.length < 10 ? errors.image = 'Must have at least 10 char' : errors.image = ''
+        if (!obj.image.length)errors.image = ''
+        obj.description.length > 150 ? errors.description = 'Maximun 150 characters' : errors.description = ''
+        obj.platforms.length===1 ? errors.platforms = 'Must have at least 2 characters' : errors.platforms = ''
+        const regExDate = (/^(\d{4})(\/|-)(\d{1,2})(\/|-)(\d{1,2})$/)
+        if(!regExDate.test(obj.release_date)) errors.release_date = 'Date format must be YYYY/MM/DD'
+        if (!obj.release_date.length) errors.release_date =''
+        obj.rating < 1 || obj.rating >5 ? errors.rating = 'Must be a value between 1 and 5' : errors.rating = ''
+        if (!obj.rating.length) errors.rating = ''
+        const regExGenres = (/^[1-9](,[1-9])*$/)
+        if(!regExGenres.test(obj.genres)) errors.genres = "Comma separated values from 1-9"
+        if(!obj.genres.length) errors.genres = ''
+        return errors
+    }
+
+
     const changeHandler = (event)=> {
         const property = event.target.name
         
         setForm({...form, [property]: event.target.value})
 
         setErrors(validate({...form, [property]: event.target.value}))
-    }
-
-    const validate = (obj)=> {
-        const errors = {}
-        
-        obj.name.length===1 ? errors.name = 'Must have at least 2 charscters' : errors.name = ''
-        obj.image.length < 10 ? errors.image = 'Must have at least 10 char' : errors.image = ''
-        if (!obj.image.length)errors.image = ''
-        obj.description.length > 150 ? errors.description = 'Maximun 150 characters' : errors.description = ''
-        obj.platforms.length===1 ? errors.platforms = 'Must have at least 2 characters' : errors.platforms = ''
-        const regExDate = /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/
-        if(!regExDate.test(obj.release_date)) errors.release_date = 'Date format must be DD/MM/YYYY'
-        if (!obj.release_date.length) errors.release_date =''
-        obj.rating < 1 || obj.rating >5 ? errors.rating = 'Must be a value between 1 and 5' : errors.rating = ''
-        if (!obj.rating.length) errors.rating = ''
-        
-        return errors
     }
 
 
@@ -59,6 +65,9 @@ const Form = () => {
         .then(res=>alert('Videogame sucessfully created'))
         .catch(err=>alert(err.message))
     }
+
+    
+
 
     return (
         <form onSubmit={submitHandler} className={style.container}>
@@ -95,12 +104,11 @@ const Form = () => {
             </div>
             <div>
                 <label>Genres: </label>
-                <input name='genres' type='text' value={form.genres} onChange={changeHandler} placeholder= '1,2,3,4,5,6,7,10,11...'/>
+                <input name='genres' type='text' value={form.genres} onChange={changeHandler} placeholder= '1,2,3,4,5,6,7,8,9'/>
                 {errors.genres && <span>{errors.genres}</span>}
             </div>
 
-            <button type="submit">SUBMIT</button>
-
+            <button type="submit" disabled={false}>SUBMIT</button>
             
         </form>
     );

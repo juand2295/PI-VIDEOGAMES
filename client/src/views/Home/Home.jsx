@@ -25,6 +25,7 @@ const Home = () => {
     
 
     const nextHandler = () => {
+        if (currentPage === 3) return
         setIndex(currentPage*ITEMS_PER_PAGE)
         const nextPage = currentPage + 1
         setCurrentPage(nextPage)
@@ -33,6 +34,7 @@ const Home = () => {
     
 
     const prevHandler = () => {
+        if (currentPage === 1) return
         setIndex(((currentPage-1)*ITEMS_PER_PAGE)-15)
         const prevPage = currentPage - 1
         setCurrentPage(prevPage)
@@ -50,8 +52,6 @@ const Home = () => {
         dispatch(getVideogameByName(searchString))
     }
 
-
-    // // const [displayItems, SetDisplayItems] = useState([...videogames].splice(0, 5))
     
 
     const handleSourceFilter = (event) => {
