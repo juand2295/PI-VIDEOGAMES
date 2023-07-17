@@ -1,9 +1,6 @@
-import { useState } from 'react';
 import styles from './SearchBar.module.css'
 
-
 const SearchBar = (props) => {
-
 
    return (
       <div className={styles.container}>
@@ -12,9 +9,7 @@ const SearchBar = (props) => {
              placeholder="Search Videogame" 
              value={props.searchString} 
              onChange={props.handleChange}
-            //  onChange={handleChange}
              /> 
-         <button onClick={() => props.handleSubmit()}><span>Search</span></button>
       </div>
    ); 
 }

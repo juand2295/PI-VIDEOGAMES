@@ -12,7 +12,7 @@ const Detail = () => {
 
     useEffect(()=>{
         dispatch(getVideogameById(id))
-    },[dispatch])
+    },[dispatch, id])
 
     const videogame = useSelector(state=> state.byId)
     console.log(videogame)

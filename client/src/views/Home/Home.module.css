@@ -1,3 +1,16 @@
+.pageButtons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.pageButtons h2{
+    font-weight:400;
+    color: red;
+    text-shadow: 0 0 15px red;
+
+}
 
 .pageButtons button{
     margin: 20px;
@@ -23,7 +36,16 @@
     cursor: pointer;
 }
 
-.searchBar{
-    margin: 10px;
+select {
+    margin: 1rem;
+    margin-top: 1.2rem;
+    padding: 0.3rem;
+    width: 14rem;
+    border: black;
+    background-color: rgb(24, 24, 24);
+    text-transform: uppercase;
+    letter-spacing: 0.05rem; 
+    color: red;
+    text-align: center;
+    
 }
-

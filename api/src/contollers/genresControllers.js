@@ -25,5 +25,4 @@ const createGenre = async(name) => {
     return genre
 }
 
-
 module.exports={getAllGenres, createGenre}

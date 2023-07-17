@@ -1,11 +1,11 @@
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { filterByGenre, filterBySource, getVideogameByName, getVideogames, orderAlphabetical, orderRating } from "../../redux/actions";
-import SearchBar from "../../components/SearchBar/SearchBar";
+import { filterByGenre, filterBySource, getVideogames, orderAlphabetical, orderRating } from "../../redux/actions";
 import {useSelector} from 'react-redux'
 import { useState } from "react";
 import style from './Home.module.css'
+
 
 const Home = () => {
     
@@ -14,6 +14,7 @@ const Home = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [index, setIndex] = useState(0)
     const videogames = useSelector(state=> [...state.videogames].splice(index,15))// Me suscribo al estado global, hay q recordar que el estado global es un obj q solo puede ser modificado por el reducer(fn) a traves de las actions
+    const totalVideogames = useSelector(state=> state.videogames.length)
     //////////////////
 
     const dispatch = useDispatch();
@@ -22,16 +23,23 @@ const Home = () => {
         dispatch(getVideogames())
     }, [dispatch])
 
-    
-
     const nextHandler = () => {
-        if (currentPage === 3) return
+        if (currentPage === (Math.ceil(totalVideogames/ITEMS_PER_PAGE))) return
         setIndex(currentPage*ITEMS_PER_PAGE)
         const nextPage = currentPage + 1
         setCurrentPage(nextPage)
         console.log(index)
     }
+
+    const lastHandler = () =>{
+        setCurrentPage(Math.ceil(totalVideogames/ITEMS_PER_PAGE))
+        setIndex(Math.ceil(totalVideogames/ITEMS_PER_PAGE-1)*ITEMS_PER_PAGE)
+    }
     
+    const firstHandler = () =>{
+        setCurrentPage(1)
+        setIndex(0)
+    }
 
     const prevHandler = () => {
         if (currentPage === 1) return
@@ -39,27 +47,18 @@ const Home = () => {
         const prevPage = currentPage - 1
         setCurrentPage(prevPage)
     }
-    
 
-    const [searchString, setSearchstring] = useState('')
-   
-    const handleChange =(event) => {
-        event.preventDefault()
-        setSearchstring(event.target.value)
-    }
-
-    const handleSubmit = () => {
-        dispatch(getVideogameByName(searchString))
-    }
-
-    
 
     const handleSourceFilter = (event) => {
-    dispatch(filterBySource(event.target.value)) 
+        setCurrentPage(1)
+        setIndex(0)
+        dispatch(filterBySource(event.target.value)) 
     }
     
     const handleGenreFilter = (event) => {
-    dispatch(filterByGenre(event.target.value)) 
+        setIndex(0)
+        setCurrentPage(1)
+        dispatch(filterByGenre(event.target.value)) 
     }
 
     const handleAlphabeticalOrder = (event) => {
@@ -74,16 +73,9 @@ const Home = () => {
 
     const[aux, setAux] = useState(false)
 
-    const handleReset = () => {
-        dispatch(getVideogames())
-        setSearchstring('')
-    }
 
     return (
         <>  
-            <div className={style.searchBar}>
-                <SearchBar handleChange={handleChange} handleSubmit={handleSubmit} searchString={searchString} handleReset={handleReset}/>
-            </div>
             <select name="source" defaultValue={'DEFAULT'} onChange={handleSourceFilter}>
                 <option value="DEFAULT" disabled>-Filter Source-</option>
                 <option value="a1">BDD</option>
@@ -108,9 +100,11 @@ const Home = () => {
             </select>
             <CardsContainer videogames={videogames}/>
             <div className={style.pageButtons}>
+            <button onClick={firstHandler}>First</button>
                 <button onClick={prevHandler}>Prev</button>
+                <h2 className={style.page}> {currentPage}</h2>
                 <button onClick={nextHandler}>Next</button>
-                {/* <h2 className={style.page}> {index}</h2> */}
+                <button onClick={lastHandler}>Last</button>
             </div>
         </>
     );
